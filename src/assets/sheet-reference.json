@@ -1,28 +1,28 @@
 {
-    "title": "Yatzy med 6 terninger",
+    "title": "Yahtzee with 6 dice",
     "upper_section": [
         {
-            "name": "ENere",
+            "name": "Ones",
             "max_point": 6
         },
         {
-            "name": "TOere",
+            "name": "Twos",
             "max_point": 12
         },
         {
-            "name": "TREere",
+            "name": "Threes",
             "max_point": 18
         },
         {
-            "name": "FIREre",
+            "name": "Fours",
             "max_point": 24
         },
         {
-            "name": "FEMmere",
+            "name": "Fives",
             "max_point": 30
         },
         {
-            "name": "SEKSere",
+            "name": "Sixes",
             "max_point": 36
         },
         {
@@ -30,49 +30,49 @@
             "max_point": null
         },
         {
-            "name": "BONUS 50 point (v. 84)",
+            "name": "BONUS 50 points (at 84)",
             "max_point": 50
         }
     ],
     "lower_section": [
         {
-            "name": "1 par",
+            "name": "One pair",
             "max_point": 12
         },
         {
-            "name": "2 par",
+            "name": "Two pairs",
             "max_point": 22
         },
         {
-            "name": "3 par",
+            "name": "Three pairs",
             "max_point": 30
         },
         {
-            "name": "3 ens",
+            "name": "Three of a kind",
             "max_point": 18
         },
         {
-            "name": "4 ens",
+            "name": "Four of a kind",
             "max_point": 24
         },
         {
-            "name": "2 x 3 ens",
+            "name": "Two three of a kinds",
             "max_point": 33
         },
         {
-            "name": "Lille straight 1-2-3-4-5",
+            "name": "Small straight (1-2-3-4-5)",
             "max_point": 15
         },
         {
-            "name": "Stor straight 2-3-4-5-6",
+            "name": "Large straight (2-3-4-5-6)",
             "max_point": 20
         },
         {
-            "name": "Royal 1-2-3-4-5-6",
+            "name": "Royal (1-2-3-4-5-6)",
             "max_point": 30
         },
         {
-            "name": "Hus 3 + 2 ens",
+            "name": "Full house (3+2)",
             "max_point": 28
         },
         {
@@ -80,11 +80,11 @@
             "max_point": 36
         },
         {
-            "name": "YATZY",
+            "name": "YAHTZEE",
             "max_point": 86
         },
         {
-            "name": "I alt",
+            "name": "TOTAL",
             "max_point": null
         }
     ]

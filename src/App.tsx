@@ -62,7 +62,7 @@ function App() {
 
       <div className="sheet-sections">
         <ScoreSection
-          title="Øvre sektion"
+          title="Upper Section"
           entries={gameData.upper_section}
           players={players}
           onScoreChange={updateScore}
@@ -77,7 +77,7 @@ function App() {
         />
 
         <ScoreSection
-          title="Nedre sektion"
+          title="Lower Section"
           entries={gameData.lower_section}
           players={players}
           onScoreChange={updateScore}

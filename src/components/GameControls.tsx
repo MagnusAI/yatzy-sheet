@@ -14,24 +14,24 @@ export function GameControls({
   return (
     <div className="header-controls">
       <button className="add-player-button" onClick={onAddPlayer}>
-        + Spiller
+        + Player
       </button>
       <button 
         className="remove-player-button-header" 
         onClick={onRemovePlayer}
         disabled={!canRemovePlayer}
       >
-        - Spiller
+        - Player
       </button>
       <button 
         className={`toggle-totals-button ${hideTotals ? 'hidden' : 'visible'}`}
         onClick={onToggleHideTotals}
-        title={hideTotals ? 'Vis totaler' : 'Skjul totaler'}
+        title={hideTotals ? 'Show totals' : 'Hide totals'}
       >
-        {hideTotals ? '👁️ Vis' : '🙈 Skjul'}
+        {hideTotals ? '👁️ Show' : '🙈 Hide'}
       </button>
       <button className="reset-button" onClick={onResetGame}>
-        Ny spil
+        New Game
       </button>
     </div>
   )

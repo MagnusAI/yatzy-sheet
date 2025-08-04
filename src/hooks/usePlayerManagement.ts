@@ -15,7 +15,7 @@ export function usePlayerManagement() {
     const newId = Date.now().toString()
     const newPlayer: Player = {
       id: newId,
-      name: `Spiller ${players.length + 1}`,
+      name: `Player ${players.length + 1}`,
       scores: {}
     }
     setPlayers(prev => [...prev, newPlayer])

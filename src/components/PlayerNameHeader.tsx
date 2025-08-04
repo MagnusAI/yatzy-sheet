@@ -13,7 +13,7 @@ export function PlayerNameHeader({ players, onPlayerNameChange }: PlayerNameHead
   return (
     <div className="player-names-row">
       <div className="category-cell sticky-category">
-        <div className="category-header">Kategori</div>
+        <div className="category-header">Category</div>
       </div>
       {players.map((player) => (
         <div key={player.id} className="score-cell">

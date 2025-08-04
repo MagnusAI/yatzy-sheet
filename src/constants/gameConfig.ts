@@ -9,21 +9,21 @@ export const GAME_CONFIG = {
 } as const
 
 export const UPPER_CATEGORIES = [
-  'ENere', 
-  'TOere', 
-  'TREere', 
-  'FIREre', 
-  'FEMmere', 
-  'SEKSere'
+  'Ones', 
+  'Twos', 
+  'Threes', 
+  'Fours', 
+  'Fives', 
+  'Sixes'
 ] as const
 
 export const CALCULATED_ROWS = {
   UPPER_TOTAL: 'TOTAL',
-  BONUS: 'BONUS 50 point (v. 84)',
-  GRAND_TOTAL: 'I alt'
+  BONUS: 'BONUS 50 points (at 84)',
+  GRAND_TOTAL: 'TOTAL'
 } as const
 
 export const DEFAULT_PLAYERS: Array<{ id: string; name: string; scores: {} }> = [
-  { id: '1', name: 'Spiller 1', scores: {} },
-  { id: '2', name: 'Spiller 2', scores: {} }
+  { id: '1', name: 'Player 1', scores: {} },
+  { id: '2', name: 'Player 2', scores: {} }
 ]

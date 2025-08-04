@@ -52,7 +52,7 @@ export function ScoreSection({
   }
 
   return (
-    <section className={title.toLowerCase().includes('øvre') ? 'upper-section' : 'lower-section'}>
+    <section className={title.toLowerCase().includes('upper') ? 'upper-section' : 'lower-section'}>
       <h2>{title}</h2>
       <div className="score-table" ref={tableRef}>
         {showPlayerNames && (
