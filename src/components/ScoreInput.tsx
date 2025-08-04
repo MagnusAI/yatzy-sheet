@@ -2,6 +2,7 @@ import type { ScoreInputProps } from '../types'
 
 /**
  * Reusable score input component
+ * Accepts 0 to indicate a crossed-out/sacrificed category
  */
 export function ScoreInput({ 
   value, 
@@ -15,11 +16,12 @@ export function ScoreInput({
       type="number"
       min={min}
       max={max}
-      value={value || ''}
+      value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
       className="score-input"
       inputMode="numeric"
       disabled={disabled}
+      title="Enter score or 0 to cross out"
     />
   )
 }

@@ -36,7 +36,7 @@ export function usePlayerManagement() {
   }
 
   const updateScore = (playerId: string, category: string, value: string) => {
-    const numValue = value === '' ? null : parseInt(value)
+    const numValue = value === '' ? null : Number(value)
     setPlayers(prev => prev.map(player => 
       player.id === playerId 
         ? { ...player, scores: { ...player.scores, [category]: numValue } }

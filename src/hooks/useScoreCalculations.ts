@@ -9,7 +9,7 @@ export function useScoreCalculations() {
   const calculateUpperTotal = (player: Player): number => {
     return UPPER_CATEGORIES.reduce((total, category) => {
       const score = player.scores[category]
-      return total + (score || 0)
+      return total + (score ?? 0)
     }, 0)
   }
 
@@ -25,7 +25,7 @@ export function useScoreCalculations() {
     
     return lowerCategories.reduce((total, category) => {
       const score = player.scores[category]
-      return total + (score || 0)
+      return total + (score ?? 0)
     }, 0)
   }
 

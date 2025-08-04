@@ -35,9 +35,10 @@ export function ScoreRow({
     }
 
     const player = players.find(p => p.id === playerId)!
+    
     return (
       <ScoreInput
-        value={player.scores[entry.name] || null}
+        value={player.scores[entry.name] ?? null}
         onChange={(value) => onScoreChange(playerId, value)}
         max={entry.max_point || undefined}
       />
