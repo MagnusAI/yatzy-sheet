@@ -1,4 +1,4 @@
-import { Player } from '../types'
+import type { Player } from '../types'
 import { GAME_CONFIG, DEFAULT_PLAYERS } from '../constants/gameConfig'
 import { useLocalStorage } from './useLocalStorage'
 

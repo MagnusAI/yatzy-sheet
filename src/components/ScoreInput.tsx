@@ -1,4 +1,4 @@
-import { ScoreInputProps } from '../types'
+import type { ScoreInputProps } from '../types'
 
 /**
  * Reusable score input component

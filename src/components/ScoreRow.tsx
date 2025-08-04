@@ -1,4 +1,4 @@
-import { ScoreRowProps } from '../types'
+import type { ScoreRowProps } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { ScoreInput } from './ScoreInput'
 import { ScoreDisplay } from './ScoreDisplay'

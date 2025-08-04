@@ -1,4 +1,4 @@
-import { ScoreDisplayProps } from '../types'
+import type { ScoreDisplayProps } from '../types'
 
 /**
  * Reusable score display component for calculated values

@@ -23,7 +23,7 @@ export const CALCULATED_ROWS = {
   GRAND_TOTAL: 'I alt'
 } as const
 
-export const DEFAULT_PLAYERS = [
+export const DEFAULT_PLAYERS: Array<{ id: string; name: string; scores: {} }> = [
   { id: '1', name: 'Spiller 1', scores: {} },
   { id: '2', name: 'Spiller 2', scores: {} }
-] as const
+]

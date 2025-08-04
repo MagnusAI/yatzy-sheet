@@ -1,4 +1,4 @@
-import { PlayerNameInputProps } from '../types'
+import type { PlayerNameInputProps } from '../types'
 import { GAME_CONFIG } from '../constants/gameConfig'
 
 /**

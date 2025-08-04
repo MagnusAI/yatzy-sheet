@@ -1,4 +1,4 @@
-import { Player } from '../types'
+import type { Player } from '../types'
 import { UPPER_CATEGORIES, GAME_CONFIG, CALCULATED_ROWS } from '../constants/gameConfig'
 import sheetData from '../assets/sheet-reference.json'
 

@@ -1,4 +1,4 @@
-import { ScoreSectionProps } from '../types'
+import type { ScoreSectionProps } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { PlayerNameHeader } from './PlayerNameHeader'
 import { ScoreRow } from './ScoreRow'
@@ -14,11 +14,12 @@ export function ScoreSection({
   onPlayerNameChange,
   calculateUpperTotal,
   calculateBonus,
-  calculateLowerTotal,
   calculateGrandTotal,
   tableRef,
   showPlayerNames = false
 }: ScoreSectionProps) {
+  // calculateLowerTotal is passed in but not used directly in this component
+  // It's part of the props interface for consistency across sections
   const getCalculationFunction = (entryName: string) => {
     switch (entryName) {
       case CALCULATED_ROWS.UPPER_TOTAL:

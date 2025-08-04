@@ -1,4 +1,4 @@
-import { GameControlsProps } from '../types'
+import type { GameControlsProps } from '../types'
 
 /**
  * Game control buttons component following Single Responsibility Principle
