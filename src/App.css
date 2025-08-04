@@ -34,6 +34,19 @@
     margin-bottom: 8px;
   }
   
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .add-player-button,
+  .remove-player-button-header,
+  .toggle-totals-button,
+  .reset-button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+  
   .sheet-sections {
     gap: 16px;
   }
@@ -65,6 +78,10 @@
     padding: 6px 4px;
     font-size: 0.75rem;
   }
+  
+  .hidden-total {
+    font-size: 1.2rem;
+  }
 }
 
 .sheet-header {
@@ -90,6 +107,7 @@
 
 .add-player-button,
 .remove-player-button-header,
+.toggle-totals-button,
 .reset-button {
   background-color: var(--accent-color);
   color: white;
@@ -125,12 +143,29 @@
   opacity: 0.6;
 }
 
+.toggle-totals-button {
+  background-color: #8b5cf6;
+}
+
+.toggle-totals-button:hover {
+  background-color: #7c3aed;
+}
+
+.toggle-totals-button.hidden {
+  background-color: #6b7280;
+}
+
+.toggle-totals-button.hidden:hover {
+  background-color: #4b5563;
+}
+
 .reset-button:hover {
   background-color: var(--accent-hover);
 }
 
 .add-player-button:active,
 .remove-player-button-header:active,
+.toggle-totals-button:active,
 .reset-button:active {
   transform: scale(0.98);
 }
@@ -334,6 +369,24 @@
   font-size: 1.2rem;
 }
 
+/* Hidden totals styling */
+.hidden-total {
+  background: var(--hidden-bg) !important;
+  border-color: var(--hidden-border) !important;
+  color: var(--hidden-text) !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden-total.grand-total {
+  background: var(--hidden-grand-total-bg) !important;
+  border-color: var(--hidden-grand-total-border) !important;
+  color: var(--hidden-grand-total-text) !important;
+}
+
 /* Color variables for easy theming */
 :root {
   --bg-color: #f8fafc;
@@ -352,6 +405,12 @@
   --display-border: #cbd5e1;
   --accent-color: #0ea5e9;
   --accent-hover: #0284c7;
+  --hidden-bg: #f3f4f6;
+  --hidden-border: #d1d5db;
+  --hidden-text: #6b7280;
+  --hidden-grand-total-bg: #e5e7eb;
+  --hidden-grand-total-border: #9ca3af;
+  --hidden-grand-total-text: #4b5563;
 }
 
 /* Dark mode support */
@@ -371,6 +430,12 @@
     --input-focus-bg: #475569;
     --display-bg: #475569;
     --display-border: #64748b;
+    --hidden-bg: #374151;
+    --hidden-border: #4b5563;
+    --hidden-text: #9ca3af;
+    --hidden-grand-total-bg: #4b5563;
+    --hidden-grand-total-border: #6b7280;
+    --hidden-grand-total-text: #d1d5db;
   }
 }
 

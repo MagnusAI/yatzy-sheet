@@ -16,7 +16,8 @@ export function ScoreSection({
   calculateBonus,
   calculateGrandTotal,
   tableRef,
-  showPlayerNames = false
+  showPlayerNames = false,
+  hideTotals = false
 }: ScoreSectionProps) {
   // calculateLowerTotal is passed in but not used directly in this component
   // It's part of the props interface for consistency across sections
@@ -70,6 +71,7 @@ export function ScoreSection({
             calculateValue={getCalculationFunction(entry.name)}
             isCalculatedRow={isCalculatedRow(entry.name)}
             rowType={getRowType(entry.name)}
+            hideTotals={hideTotals}
           />
         ))}
       </div>

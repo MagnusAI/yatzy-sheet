@@ -39,6 +39,7 @@ export interface ScoreInputProps {
 export interface ScoreDisplayProps {
   value: number
   isGrandTotal?: boolean
+  isHidden?: boolean
 }
 
 export interface PlayerNameInputProps {
@@ -54,6 +55,7 @@ export interface ScoreRowProps {
   calculateValue?: (player: Player) => number
   isCalculatedRow?: boolean
   rowType?: 'normal' | 'total' | 'bonus' | 'grand-total'
+  hideTotals?: boolean
 }
 
 export interface ScoreSectionProps {
@@ -68,6 +70,7 @@ export interface ScoreSectionProps {
   calculateGrandTotal: (player: Player) => number
   tableRef?: React.RefObject<HTMLDivElement> | React.RefObject<HTMLDivElement | null>
   showPlayerNames?: boolean
+  hideTotals?: boolean
 }
 
 export interface GameControlsProps {
@@ -75,4 +78,6 @@ export interface GameControlsProps {
   onRemovePlayer: () => void
   onResetGame: () => void
   canRemovePlayer: boolean
+  onToggleHideTotals: () => void
+  hideTotals: boolean
 }

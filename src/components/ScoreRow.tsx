@@ -12,7 +12,8 @@ export function ScoreRow({
   onScoreChange, 
   calculateValue,
   isCalculatedRow = false,
-  rowType = 'normal'
+  rowType = 'normal',
+  hideTotals = false
 }: ScoreRowProps) {
   const getRowClassName = () => {
     const baseClass = 'score-row'
@@ -30,7 +31,7 @@ export function ScoreRow({
       const player = players.find(p => p.id === playerId)!
       const value = calculateValue(player)
       const isGrandTotal = entry.name === CALCULATED_ROWS.GRAND_TOTAL
-      return <ScoreDisplay value={value} isGrandTotal={isGrandTotal} />
+      return <ScoreDisplay value={value} isGrandTotal={isGrandTotal} isHidden={hideTotals} />
     }
 
     const player = players.find(p => p.id === playerId)!

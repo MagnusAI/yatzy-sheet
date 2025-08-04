@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import sheetData from './assets/sheet-reference.json'
 import type { GameData } from './types'
@@ -15,6 +16,9 @@ const gameData = sheetData as GameData
  * Follows Single Responsibility Principle by delegating specific concerns to hooks and components
  */
 function App() {
+  // Local state for UI preferences - default to hiding totals for suspense
+  const [hideTotals, setHideTotals] = useState(true)
+
   // Custom hooks handle specific concerns
   const {
     players,
@@ -38,6 +42,10 @@ function App() {
   // Update CSS grid columns based on player count
   useDynamicGrid(players.length)
 
+  const toggleHideTotals = () => {
+    setHideTotals(prev => !prev)
+  }
+
   return (
     <div className="yatzy-sheet">
       <header className="sheet-header">
@@ -47,6 +55,8 @@ function App() {
           onRemovePlayer={removeLatestPlayer}
           onResetGame={resetGame}
           canRemovePlayer={canRemovePlayer}
+          onToggleHideTotals={toggleHideTotals}
+          hideTotals={hideTotals}
         />
       </header>
 
@@ -63,6 +73,7 @@ function App() {
           calculateGrandTotal={calculateGrandTotal}
           tableRef={upperTableRef as React.RefObject<HTMLDivElement>}
           showPlayerNames={true}
+          hideTotals={hideTotals}
         />
 
         <ScoreSection
@@ -77,6 +88,7 @@ function App() {
           calculateGrandTotal={calculateGrandTotal}
           tableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
           showPlayerNames={false}
+          hideTotals={hideTotals}
         />
       </div>
     </div>
