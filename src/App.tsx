@@ -169,7 +169,7 @@ function App() {
             {/* Player Names Header Row */}
             <div className="player-names-row">
               <div className="category-cell sticky-category">
-                <div className="category-header">Kategori</div>
+                <div className="category-header">Players</div>
               </div>
               {players.map((player) => (
                 <div key={player.id} className="score-cell">

@@ -220,6 +220,8 @@
 .category-cell {
   text-align: left;
   padding-right: 8px;
+  height: 100%;
+  align-content: center;
 }
 
 .sticky-category {
@@ -368,7 +370,7 @@
 /* Dynamic grid columns based on player count */
 .player-names-row,
 .score-row {
-  grid-template-columns: 200px repeat(var(--player-count, 1), 80px);
+  grid-template-columns: 124px repeat(var(--player-count, 1), 80px);
 }
 
 /* Tablet and larger screens */
