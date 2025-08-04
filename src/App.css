@@ -47,22 +47,20 @@
     font-size: 0.8rem;
   }
   
+  .sticky-player-header {
+    padding: 6px 12px;
+    margin-bottom: 12px;
+  }
+
   .sheet-sections {
     gap: 16px;
   }
   
   .upper-section,
   .lower-section {
-    padding: 12px;
+    padding: 12px 0;
   }
   
-  .upper-section h2,
-  .lower-section h2 {
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-  }
-  
-  .player-names-row,
   .score-row {
     padding: 6px 8px;
     gap: 6px;
@@ -170,18 +168,31 @@
   transform: scale(0.98);
 }
 
+/* Sticky player header */
+.sticky-player-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-color);
+  border-bottom: 2px solid var(--border-color);
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 /* Player Names Row */
 .player-names-row {
   display: grid;
-  grid-template-columns: 200px repeat(var(--player-count, 1), 80px);
+  grid-template-columns: 124px repeat(var(--player-count, 1), 80px);
   gap: 8px;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--special-row-bg);
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
   min-width: fit-content;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .category-header {
@@ -219,7 +230,7 @@
 .lower-section {
   background: var(--section-bg);
   border-radius: 12px;
-  padding: 16px;
+  padding: 16px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -239,11 +250,12 @@
   gap: 6px;
   overflow-x: auto;
   min-width: 0;
+  padding: 0 12px;
 }
 
 .score-row {
   display: grid;
-  grid-template-columns: 200px repeat(var(--player-count, 1), 80px);
+  grid-template-columns: 124px repeat(var(--player-count, 1), 80px);
   gap: 8px;
   align-items: center;
   padding: 8px 12px;
@@ -287,7 +299,7 @@
 }
 
 .player-names-row .sticky-category {
-  background: var(--special-row-bg);
+  background: transparent;
 }
 
 .category-cell label {
@@ -459,7 +471,7 @@
   
   .player-names-row,
   .score-row {
-    grid-template-columns: 250px repeat(var(--player-count, 1), 100px);
+    grid-template-columns: 160px repeat(var(--player-count, 1), 100px);
     gap: 12px;
   }
   
@@ -499,7 +511,7 @@
   
   .player-names-row,
   .score-row {
-    grid-template-columns: 300px repeat(var(--player-count, 1), 120px);
+    grid-template-columns: 200px repeat(var(--player-count, 1), 120px);
     gap: 16px;
   }
   

@@ -12,8 +12,8 @@ interface PlayerNameHeaderProps {
 export function PlayerNameHeader({ players, onPlayerNameChange }: PlayerNameHeaderProps) {
   return (
     <div className="player-names-row">
-      <div className="category-cell sticky-category">
-        <div className="category-header">Category</div>
+      <div className="category-cell">
+        <div className="category-header"/>
       </div>
       {players.map((player) => (
         <div key={player.id} className="score-cell">

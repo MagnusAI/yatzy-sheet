@@ -1,48 +1,56 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Custom hook for synchronizing horizontal scroll between two elements
+ * Custom hook for synchronizing horizontal scroll between player header and table sections
+ * Uses requestAnimationFrame for optimized performance
  */
 export function useSynchronizedScroll() {
+  const playerHeaderRef = useRef<HTMLDivElement | null>(null)
   const upperTableRef = useRef<HTMLDivElement | null>(null)
   const lowerTableRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    const playerHeader = playerHeaderRef.current
     const upperTable = upperTableRef.current
     const lowerTable = lowerTableRef.current
 
-    if (!upperTable || !lowerTable) return
+    if (!playerHeader || !upperTable || !lowerTable) return
 
     let isScrolling = false
 
-    const syncScrollFromUpper = () => {
+    const syncScroll = (source: HTMLDivElement, targets: HTMLDivElement[]) => {
       if (isScrolling) return
+      
       isScrolling = true
-      lowerTable.scrollLeft = upperTable.scrollLeft
       requestAnimationFrame(() => {
+        targets.forEach(target => {
+          if (target !== source) {
+            target.scrollLeft = source.scrollLeft
+          }
+        })
         isScrolling = false
       })
     }
 
-    const syncScrollFromLower = () => {
-      if (isScrolling) return
-      isScrolling = true
-      upperTable.scrollLeft = lowerTable.scrollLeft
-      requestAnimationFrame(() => {
-        isScrolling = false
-      })
-    }
+    const allElements = [playerHeader, upperTable, lowerTable]
 
-    upperTable.addEventListener('scroll', syncScrollFromUpper)
-    lowerTable.addEventListener('scroll', syncScrollFromLower)
+    const handlePlayerHeaderScroll = () => syncScroll(playerHeader, allElements)
+    const handleUpperScroll = () => syncScroll(upperTable, allElements)
+    const handleLowerScroll = () => syncScroll(lowerTable, allElements)
+
+    playerHeader.addEventListener('scroll', handlePlayerHeaderScroll)
+    upperTable.addEventListener('scroll', handleUpperScroll)
+    lowerTable.addEventListener('scroll', handleLowerScroll)
 
     return () => {
-      upperTable.removeEventListener('scroll', syncScrollFromUpper)
-      lowerTable.removeEventListener('scroll', syncScrollFromLower)
+      playerHeader.removeEventListener('scroll', handlePlayerHeaderScroll)
+      upperTable.removeEventListener('scroll', handleUpperScroll)
+      lowerTable.removeEventListener('scroll', handleLowerScroll)
     }
   }, [])
 
   return {
+    playerHeaderRef,
     upperTableRef,
     lowerTableRef
   }

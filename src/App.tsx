@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import sheetData from './assets/sheet-reference.json'
 import type { GameData } from './types'
-import { GameControls, ScoreSection } from './components'
+import { GameControls, ScoreSection, PlayerNameHeader } from './components'
 import { usePlayerManagement } from './hooks/usePlayerManagement'
 import { useScoreCalculations } from './hooks/useScoreCalculations'
 import { useSynchronizedScroll } from './hooks/useSynchronizedScroll'
@@ -37,7 +37,7 @@ function App() {
     calculateGrandTotal
   } = useScoreCalculations()
 
-  const { upperTableRef, lowerTableRef } = useSynchronizedScroll()
+  const { playerHeaderRef, upperTableRef, lowerTableRef } = useSynchronizedScroll()
   
   // Update CSS grid columns based on player count
   useDynamicGrid(players.length)
@@ -60,19 +60,24 @@ function App() {
         />
       </header>
 
+      <div className="sticky-player-header" ref={playerHeaderRef}>
+        <PlayerNameHeader 
+          players={players} 
+          onPlayerNameChange={updatePlayerName} 
+        />
+      </div>
+
       <div className="sheet-sections">
         <ScoreSection
           title="Upper Section"
           entries={gameData.upper_section}
           players={players}
           onScoreChange={updateScore}
-          onPlayerNameChange={updatePlayerName}
           calculateUpperTotal={calculateUpperTotal}
           calculateBonus={calculateBonus}
           calculateLowerTotal={calculateLowerTotal}
           calculateGrandTotal={calculateGrandTotal}
           tableRef={upperTableRef as React.RefObject<HTMLDivElement>}
-          showPlayerNames={true}
           hideTotals={hideTotals}
         />
 
@@ -81,13 +86,11 @@ function App() {
           entries={gameData.lower_section}
           players={players}
           onScoreChange={updateScore}
-          onPlayerNameChange={updatePlayerName}
           calculateUpperTotal={calculateUpperTotal}
           calculateBonus={calculateBonus}
           calculateLowerTotal={calculateLowerTotal}
           calculateGrandTotal={calculateGrandTotal}
           tableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
-          showPlayerNames={false}
           hideTotals={hideTotals}
         />
       </div>

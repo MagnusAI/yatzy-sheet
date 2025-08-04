@@ -1,6 +1,5 @@
 import type { ScoreSectionProps } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
-import { PlayerNameHeader } from './PlayerNameHeader'
 import { ScoreRow } from './ScoreRow'
 
 /**
@@ -11,12 +10,10 @@ export function ScoreSection({
   entries,
   players,
   onScoreChange,
-  onPlayerNameChange,
   calculateUpperTotal,
   calculateBonus,
   calculateGrandTotal,
   tableRef,
-  showPlayerNames = false,
   hideTotals = false
 }: ScoreSectionProps) {
   // calculateLowerTotal is passed in but not used directly in this component
@@ -53,15 +50,7 @@ export function ScoreSection({
 
   return (
     <section className={title.toLowerCase().includes('upper') ? 'upper-section' : 'lower-section'}>
-      <h2>{title}</h2>
       <div className="score-table" ref={tableRef}>
-        {showPlayerNames && (
-          <PlayerNameHeader 
-            players={players} 
-            onPlayerNameChange={onPlayerNameChange} 
-          />
-        )}
-        
         {entries.map((entry, index) => (
           <ScoreRow
             key={index}

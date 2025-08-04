@@ -63,13 +63,11 @@ export interface ScoreSectionProps {
   entries: ScoreEntry[]
   players: Player[]
   onScoreChange: (playerId: string, category: string, value: string) => void
-  onPlayerNameChange: (playerId: string, name: string) => void
   calculateUpperTotal: (player: Player) => number
   calculateBonus: (player: Player) => number
   calculateLowerTotal: (player: Player) => number
   calculateGrandTotal: (player: Player) => number
   tableRef?: React.RefObject<HTMLDivElement> | React.RefObject<HTMLDivElement | null>
-  showPlayerNames?: boolean
   hideTotals?: boolean
 }
 
