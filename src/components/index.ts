@@ -1,0 +1,8 @@
+// Component exports for clean imports
+export { GameControls } from './GameControls'
+export { ScoreInput } from './ScoreInput'
+export { ScoreDisplay } from './ScoreDisplay'
+export { PlayerNameInput } from './PlayerNameInput'
+export { ScoreRow } from './ScoreRow'
+export { PlayerNameHeader } from './PlayerNameHeader'
+export { ScoreSection } from './ScoreSection'
