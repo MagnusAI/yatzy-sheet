@@ -1,0 +1,77 @@
+.yatzySheet {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.sheetHeader {
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 16px 0;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.sheetHeader h1 {
+  margin: 0 0 16px 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stickyPlayerHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-color);
+  border-bottom: 2px solid var(--border-color);
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.sheetSections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .yatzySheet {
+    max-width: none;
+    padding: 8px 12px;
+    margin: 0;
+  }
+
+  .sheetHeader {
+    margin-bottom: 12px;
+    padding: 8px 0;
+  }
+
+  .sheetHeader h1 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+  }
+
+  .stickyPlayerHeader {
+    padding: 6px 12px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .yatzySheet {
+    padding: 24px;
+    max-width: none;
+    overflow-x: auto;
+  }
+
+  .sheetHeader h1 {
+    font-size: 2rem;
+  }
+}
+

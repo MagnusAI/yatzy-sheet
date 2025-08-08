@@ -2,6 +2,7 @@ import type { ScoreRowProps } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { ScoreInput } from './ScoreInput'
 import { ScoreDisplay } from './ScoreDisplay'
+import styles from './styles/Score.module.css'
 
 /**
  * Reusable score row component that handles both input and calculated rows
@@ -16,11 +17,11 @@ export function ScoreRow({
   hideTotals = false
 }: ScoreRowProps) {
   const getRowClassName = () => {
-    const baseClass = 'score-row'
+    const baseClass = styles.scoreRow
     const typeClasses = {
-      total: 'total-row',
-      bonus: 'bonus-row', 
-      'grand-total': 'grand-total-row',
+      total: styles.totalRow,
+      bonus: styles.bonusRow, 
+      'grand-total': styles.grandTotalRow,
       normal: ''
     }
     return `${baseClass} ${typeClasses[rowType]}`.trim()
@@ -47,16 +48,16 @@ export function ScoreRow({
 
   return (
     <div className={getRowClassName()}>
-      <div className="category-cell sticky-category">
+      <div className={`${styles.categoryCell} ${styles.stickyCategory}`}>
         <label>
           {entry.name}
           {entry.max_point && (
-            <span className="max-points">(max {entry.max_point})</span>
+            <span className={styles.maxPoints}>(max {entry.max_point})</span>
           )}
         </label>
       </div>
       {players.map((player) => (
-        <div key={player.id} className="score-cell">
+        <div key={player.id} className={styles.scoreCell}>
           {renderScoreCell(player.id)}
         </div>
       ))}

@@ -1,6 +1,8 @@
 import type { ScoreSectionProps } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { ScoreRow } from './ScoreRow'
+import score from './styles/Score.module.css'
+import sections from './styles/Sections.module.css'
 
 /**
  * Score section component for upper and lower sections
@@ -49,8 +51,8 @@ export function ScoreSection({
   }
 
   return (
-    <section className={title.toLowerCase().includes('upper') ? 'upper-section' : 'lower-section'}>
-      <div className="score-table" ref={tableRef}>
+    <section className={title.toLowerCase().includes('upper') ? sections.upperSection : sections.lowerSection}>
+      <div className={score.scoreTable} ref={tableRef}>
         {entries.map((entry, index) => (
           <ScoreRow
             key={index}

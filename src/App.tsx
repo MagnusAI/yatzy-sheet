@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import styles from './App.module.css'
 import sheetData from './assets/sheet-reference.json'
 import type { GameData } from './types'
 import { GameControls, ScoreSection, PlayerNameHeader } from './components'
@@ -47,8 +47,8 @@ function App() {
   }
 
   return (
-    <div className="yatzy-sheet">
-      <header className="sheet-header">
+    <div className={styles.yatzySheet}>
+      <header className={styles.sheetHeader}>
         <h1>{gameData.title}</h1>
         <GameControls
           onAddPlayer={addPlayer}
@@ -60,14 +60,14 @@ function App() {
         />
       </header>
 
-      <div className="sticky-player-header" ref={playerHeaderRef}>
+      <div className={styles.stickyPlayerHeader} ref={playerHeaderRef}>
         <PlayerNameHeader 
           players={players} 
           onPlayerNameChange={updatePlayerName} 
         />
       </div>
 
-      <div className="sheet-sections">
+      <div className={styles.sheetSections}>
         <ScoreSection
           title="Upper Section"
           entries={gameData.upper_section}

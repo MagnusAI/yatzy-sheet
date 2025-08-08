@@ -1,0 +1,21 @@
+.upperSection,
+.lowerSection {
+  background: var(--section-bg);
+  border-radius: 12px;
+  padding: 16px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 600;
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .upperSection,
+  .lowerSection { padding: 12px 0; }
+}
+

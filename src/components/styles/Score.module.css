@@ -1,0 +1,108 @@
+.scoreTable {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-x: auto;
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.scoreRow {
+  display: grid;
+  grid-template-columns: 124px repeat(var(--player-count, 1), 80px);
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px 8px 0px;
+  background: var(--row-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+  min-width: fit-content;
+}
+
+.scoreRow:hover { background: var(--row-hover); }
+
+.stickyCategory {
+  position: sticky;
+  left: -12px;
+  background: var(--row-bg);
+  z-index: 10;
+  border-right: 1px solid var(--border-color);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.scoreRow:hover .stickyCategory {
+  background: var(--row-hover);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.15);
+}
+
+.totalRow .stickyCategory,
+.bonusRow .stickyCategory { 
+  background: var(--special-row-bg);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.12);
+}
+
+.grandTotalRow .stickyCategory { 
+  background: var(--total-row-bg);
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.15);
+}
+
+.maxPoints {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.scoreInput {
+  width: 70px;
+  padding: 8px 6px;
+  border: 2px solid var(--input-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: border-color 0.2s, background-color 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.scoreInput::-webkit-outer-spin-button,
+.scoreInput::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.scoreInput:focus { outline: none; border-color: var(--accent-color); background: var(--input-focus-bg); }
+
+.scoreDisplay {
+  width: 70px;
+  padding: 8px 6px;
+  background: var(--display-bg);
+  border: 2px solid var(--display-border);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.totalRow,
+.bonusRow { background: var(--special-row-bg); font-weight: 600; }
+
+.grandTotalRow {
+  background: var(--total-row-bg);
+  border: 2px solid var(--accent-color);
+  font-weight: 700;
+}
+
+.grandTotal { background: var(--accent-color); color: white; border-color: var(--accent-color); font-size: 1.2rem; }
+
+.hiddenTotal { background: var(--hidden-bg) !important; border-color: var(--hidden-border) !important; color: var(--hidden-text) !important; font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+.hiddenGrandTotal { background: var(--hidden-grand-total-bg) !important; border-color: var(--hidden-grand-total-border) !important; color: var(--hidden-grand-total-text) !important; }
+
+@media (min-width: 768px) {
+  .scoreRow { grid-template-columns: 160px repeat(var(--player-count, 1), 100px); gap: 12px; padding: 12px 16px; }
+  .scoreInput, .scoreDisplay { width: 90px; }
+}
+

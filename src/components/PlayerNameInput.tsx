@@ -1,5 +1,6 @@
 import type { PlayerNameInputProps } from '../types'
 import { GAME_CONFIG } from '../constants/gameConfig'
+import styles from './styles/Player.module.css'
 
 /**
  * Reusable player name input component
@@ -14,7 +15,7 @@ export function PlayerNameInput({
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="player-name-input"
+      className={styles.playerNameInput}
       maxLength={maxLength}
     />
   )

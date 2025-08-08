@@ -1,4 +1,5 @@
 import type { GameControlsProps } from '../types'
+import styles from './styles/Controls.module.css'
 
 /**
  * Game control buttons component following Single Responsibility Principle
@@ -12,25 +13,25 @@ export function GameControls({
   hideTotals
 }: GameControlsProps) {
   return (
-    <div className="header-controls">
-      <button className="add-player-button" onClick={onAddPlayer}>
+    <div className={styles.headerControls}>
+      <button className={styles.addPlayerButton} onClick={onAddPlayer}>
         + Player
       </button>
       <button 
-        className="remove-player-button-header" 
+        className={styles.removePlayerButtonHeader}
         onClick={onRemovePlayer}
         disabled={!canRemovePlayer}
       >
         - Player
       </button>
       <button 
-        className={`toggle-totals-button ${hideTotals ? 'hidden' : 'visible'}`}
+        className={`${styles.toggleTotalsButton} ${hideTotals ? styles.toggleTotalsButtonHidden : ''}`}
         onClick={onToggleHideTotals}
         title={hideTotals ? 'Show totals' : 'Hide totals'}
       >
         {hideTotals ? '👁️ Show' : '🙈 Hide'}
       </button>
-      <button className="reset-button" onClick={onResetGame}>
+      <button className={styles.resetButton} onClick={onResetGame}>
         New Game
       </button>
     </div>

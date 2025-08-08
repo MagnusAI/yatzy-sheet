@@ -1,4 +1,5 @@
 import type { ScoreInputProps } from '../types'
+import styles from './styles/Score.module.css'
 
 /**
  * Reusable score input component
@@ -18,7 +19,7 @@ export function ScoreInput({
       max={max}
       value={value ?? ''}
       onChange={(e) => onChange(e.target.value)}
-      className="score-input"
+      className={styles.scoreInput}
       inputMode="numeric"
       disabled={disabled}
       title="Enter score or 0 to cross out"

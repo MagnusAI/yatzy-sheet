@@ -1,5 +1,7 @@
 import type { Player } from '../types'
 import { PlayerNameInput } from './PlayerNameInput'
+import table from './styles/Table.module.css'
+import score from './styles/Score.module.css'
 
 interface PlayerNameHeaderProps {
   players: Player[]
@@ -11,12 +13,12 @@ interface PlayerNameHeaderProps {
  */
 export function PlayerNameHeader({ players, onPlayerNameChange }: PlayerNameHeaderProps) {
   return (
-    <div className="player-names-row">
-      <div className="category-cell">
-        <div className="category-header"/>
+    <div className={table.playerNamesRow}>
+      <div className={score.categoryCell}>
+        <div className={table.categoryHeader}/>
       </div>
       {players.map((player) => (
-        <div key={player.id} className="score-cell">
+        <div key={player.id} className={table.scoreCell}>
           <PlayerNameInput
             value={player.name}
             onChange={(name) => onPlayerNameChange(player.id, name)}

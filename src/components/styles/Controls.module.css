@@ -1,0 +1,59 @@
+.headerControls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.addPlayerButton,
+.removePlayerButtonHeader,
+.toggleTotalsButton,
+.resetButton {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  touch-action: manipulation;
+}
+
+.addPlayerButton { background-color: #10b981; }
+.addPlayerButton:hover { background-color: #059669; }
+
+.removePlayerButtonHeader { background-color: #ef4444; }
+.removePlayerButtonHeader:hover:not(:disabled) { background-color: #dc2626; }
+.removePlayerButtonHeader:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.toggleTotalsButton { background-color: #8b5cf6; }
+.toggleTotalsButton:hover { background-color: #7c3aed; }
+.toggleTotalsButtonHidden { background-color: #6b7280; }
+.toggleTotalsButtonHidden:hover { background-color: #4b5563; }
+
+.resetButton:hover { background-color: var(--accent-hover); }
+
+.addPlayerButton:active,
+.removePlayerButtonHeader:active,
+.toggleTotalsButton:active,
+.resetButton:active {
+  transform: scale(0.98);
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .headerControls { gap: 8px; }
+  .addPlayerButton,
+  .removePlayerButtonHeader,
+  .toggleTotalsButton,
+  .resetButton {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
