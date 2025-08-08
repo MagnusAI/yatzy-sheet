@@ -1,5 +1,7 @@
+import React from 'react'
 import type { Player, GameData } from '../types'
 import { ScoreSection } from '../components/ScoreSection'
+// Mini Golf rendering only; settings handled at App level
 
 // Simple minigolf definition: N holes with a TOTAL row at the end
 export function createMiniGolfData(holes: number): GameData {
@@ -44,17 +46,22 @@ export function MiniGolfSection({
   hideTotals?: boolean
 }) {
   const rowConfig = buildMiniGolfRowConfig()
+  const [holes] = React.useState(data.upper_section.filter(e => e.name.startsWith('Hole ')).length)
+
+  const currentData = createMiniGolfData(holes)
 
   return (
-    <ScoreSection
-      title={data.title}
-      entries={data.upper_section}
-      players={players}
-      onScoreChange={onScoreChange}
-      rowConfigByEntryName={rowConfig}
-      tableRef={tableRef}
-      hideTotals={hideTotals}
-    />
+    <div>
+      <ScoreSection
+        title={currentData.title}
+        entries={currentData.upper_section}
+        players={players}
+        onScoreChange={onScoreChange}
+        rowConfigByEntryName={rowConfig}
+        tableRef={tableRef}
+        hideTotals={hideTotals}
+      />
+    </div>
   )
 }
 

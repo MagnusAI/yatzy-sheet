@@ -2,7 +2,8 @@ import { useState } from 'react'
 import styles from './App.module.css'
 import sheetData from './assets/sheet-reference.json'
 import type { GameData } from './types'
-import { GameControls, PlayerNameHeader } from './components'
+import { PlayerNameHeader, SettingsModal, SettingsButton } from './components'
+import settingsStyles from './components/styles/Settings.module.css'
 import { usePlayerManagement } from './hooks/usePlayerManagement'
 import { useSynchronizedScroll } from './hooks/useSynchronizedScroll'
 import { useDynamicGrid } from './hooks/useDynamicGrid'
@@ -19,7 +20,7 @@ const gameData = sheetData as GameData
  */
 function App() {
   // Local state for UI preferences - default to hiding totals for suspense
-  const [hideTotals, setHideTotals] = useState(true)
+  const [hideTotals] = useState(true)
 
   // Custom hooks handle specific concerns
   const {
@@ -28,7 +29,6 @@ function App() {
     removeLatestPlayer,
     updatePlayerName,
     updateScore,
-    resetGame,
     canRemovePlayer
   } = usePlayerManagement()
 
@@ -36,13 +36,16 @@ function App() {
   const [sheetType, setSheetType] = useState<'yatzy' | 'minigolf'>('yatzy')
   const miniGolfData = createMiniGolfData(9)
   const pageTitle = sheetType === 'yatzy' ? gameData.title : miniGolfData.title
+  const [settingsOpen, setSettingsOpen] = useState(false)
+  const [miniGolfHoles, setMiniGolfHoles] = useState(9)
+  const [yatzyDice, setYatzyDice] = useState(6)
+  const [yatzyBonusThreshold, setYatzyBonusThreshold] = useState(84)
+  const [yatzyBonusPoints, setYatzyBonusPoints] = useState(50)
   
   // Update CSS grid columns based on player count
   useDynamicGrid(players.length)
 
-  const toggleHideTotals = () => {
-    setHideTotals(prev => !prev)
-  }
+  // Removed unused toggle for now; reintroduce when adding header toggle
 
   return (
     <div className={styles.yatzySheet}>
@@ -62,14 +65,7 @@ function App() {
             Mini Golf
           </button>
         </div>
-        <GameControls
-          onAddPlayer={addPlayer}
-          onRemovePlayer={removeLatestPlayer}
-          onResetGame={resetGame}
-          canRemovePlayer={canRemovePlayer}
-          onToggleHideTotals={toggleHideTotals}
-          hideTotals={hideTotals}
-        />
+        <SettingsButton onClick={() => setSettingsOpen(true)} />
       </header>
 
       <div className={styles.stickyPlayerHeader} ref={playerHeaderRef}>
@@ -90,13 +86,43 @@ function App() {
           />
         ) : (
           <MiniGolfSection
-            data={miniGolfData}
+            data={createMiniGolfData(miniGolfHoles)}
             players={players}
             onScoreChange={(playerId, category, value) => updateScore(playerId, category, value)}
             tableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
             hideTotals={hideTotals}
           />
         )}
+
+        <SettingsModal open={settingsOpen} title="Settings" onClose={() => setSettingsOpen(false)}>
+          <div className={settingsStyles.content}>
+            <div className={settingsStyles.grid}>
+              {sheetType === 'minigolf' ? (
+                <div className={settingsStyles.row}><label>Holes</label><input type="number" min={1} max={36} value={miniGolfHoles} onChange={(e) => setMiniGolfHoles(Number(e.target.value))} /></div>
+              ) : (
+                <>
+                  <div className={settingsStyles.row}><label>Dice</label><input type="number" min={1} max={6} value={yatzyDice} onChange={(e) => setYatzyDice(Number(e.target.value))} /></div>
+                  <div className={settingsStyles.row}><label>Bonus threshold</label><input type="number" value={yatzyBonusThreshold} onChange={(e) => setYatzyBonusThreshold(Number(e.target.value))} /></div>
+                  <div className={settingsStyles.row}><label>Bonus points</label><input type="number" value={yatzyBonusPoints} onChange={(e) => setYatzyBonusPoints(Number(e.target.value))} /></div>
+                </>
+              )}
+              <div className={settingsStyles.row}>
+                <label>Players</label>
+                <div className={settingsStyles.playerStepper}>
+                  <button className={settingsStyles.stepButton} onClick={removeLatestPlayer} disabled={!canRemovePlayer}>-</button>
+                  <span className={settingsStyles.stepValue}>{players.length}</span>
+                  <button className={settingsStyles.stepButton} onClick={addPlayer}>+</button>
+                </div>
+              </div>
+            </div>
+            <div className={settingsStyles.actions}>
+              <button className={controls.resetButton} onClick={() => {
+                setMiniGolfHoles(9); setYatzyDice(6); setYatzyBonusThreshold(84); setYatzyBonusPoints(50); setSettingsOpen(false)
+              }}>Reset</button>
+              <button className={controls.addPlayerButton} onClick={() => setSettingsOpen(false)}>Close</button>
+            </div>
+          </div>
+        </SettingsModal>
       </div>
     </div>
   )

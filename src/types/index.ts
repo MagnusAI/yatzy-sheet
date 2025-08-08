@@ -83,4 +83,5 @@ export interface GameControlsProps {
   canRemovePlayer: boolean
   onToggleHideTotals: () => void
   hideTotals: boolean
+  showPlayerButtons?: boolean
 }

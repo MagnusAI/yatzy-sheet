@@ -1,8 +1,10 @@
+import React from 'react'
 import sheetData from '../assets/sheet-reference.json'
 import type { GameData, Player } from '../types'
 import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { ScoreSection } from '../components/ScoreSection'
 import { useScoreCalculations } from '../hooks/useScoreCalculations'
+// Yatzy rendering only; settings are handled at App level
 
 const gameData = sheetData as GameData
 

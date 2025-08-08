@@ -1,0 +1,55 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  width: min(560px, 92vw);
+  background: var(--section-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+.title { margin: 0; font-size: 1.1rem; color: var(--text-primary); }
+.closeButton { font-size: 1.25rem; }
+.content { padding: 20px; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 16px 20px;
+}
+.row { display: contents; }
+.row label { align-self: center; color: var(--text-primary); font-weight: 500; }
+.row input { justify-self: end; width: 140px; padding: 8px 10px; border: 1px solid var(--input-border); border-radius: 8px; background: var(--input-bg); color: var(--text-primary); }
+.actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+
+.playerStepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.stepButton {
+  background: var(--row-bg);
+  padding: 8px 12px;
+  font-weight: 700;
+}
+.stepValue {
+  padding: 6px 16px;
+  min-width: 40px;
+  text-align: center;
+  background: var(--section-bg);
+}
+

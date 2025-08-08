@@ -10,20 +10,25 @@ export function GameControls({
   onResetGame, 
   canRemovePlayer,
   onToggleHideTotals,
-  hideTotals
+  hideTotals,
+  showPlayerButtons = true
 }: GameControlsProps) {
   return (
     <div className={styles.headerControls}>
-      <button className={styles.addPlayerButton} onClick={onAddPlayer}>
-        + Player
-      </button>
-      <button 
-        className={styles.removePlayerButtonHeader}
-        onClick={onRemovePlayer}
-        disabled={!canRemovePlayer}
-      >
-        - Player
-      </button>
+      {showPlayerButtons && (
+        <>
+          <button className={styles.addPlayerButton} onClick={onAddPlayer}>
+            + Player
+          </button>
+          <button 
+            className={styles.removePlayerButtonHeader}
+            onClick={onRemovePlayer}
+            disabled={!canRemovePlayer}
+          >
+            - Player
+          </button>
+        </>
+      )}
       <button 
         className={`${styles.toggleTotalsButton} ${hideTotals ? styles.toggleTotalsButtonHidden : ''}`}
         onClick={onToggleHideTotals}
