@@ -1,5 +1,4 @@
 import type { ScoreRowProps } from '../types'
-import { CALCULATED_ROWS } from '../constants/gameConfig'
 import { ScoreInput } from './ScoreInput'
 import { ScoreDisplay } from './ScoreDisplay'
 import styles from './styles/Score.module.css'
@@ -14,7 +13,8 @@ export function ScoreRow({
   calculateValue,
   isCalculatedRow = false,
   rowType = 'normal',
-  hideTotals = false
+  hideTotals = false,
+  isGrandTotal = false
 }: ScoreRowProps) {
   const getRowClassName = () => {
     const baseClass = styles.scoreRow
@@ -31,7 +31,6 @@ export function ScoreRow({
     if (isCalculatedRow && calculateValue) {
       const player = players.find(p => p.id === playerId)!
       const value = calculateValue(player)
-      const isGrandTotal = entry.name === CALCULATED_ROWS.GRAND_TOTAL
       return <ScoreDisplay value={value} isGrandTotal={isGrandTotal} isHidden={hideTotals} />
     }
 

@@ -55,7 +55,15 @@ export interface ScoreRowProps {
   calculateValue?: (player: Player) => number
   isCalculatedRow?: boolean
   rowType?: 'normal' | 'total' | 'bonus' | 'grand-total'
+  isGrandTotal?: boolean
   hideTotals?: boolean
+}
+
+export interface ScoreSectionRowConfig {
+  type: 'normal' | 'total' | 'bonus' | 'grand-total'
+  isCalculated: boolean
+  isGrandTotal?: boolean
+  calculateValue?: (player: Player) => number
 }
 
 export interface ScoreSectionProps {
@@ -63,10 +71,7 @@ export interface ScoreSectionProps {
   entries: ScoreEntry[]
   players: Player[]
   onScoreChange: (playerId: string, category: string, value: string) => void
-  calculateUpperTotal: (player: Player) => number
-  calculateBonus: (player: Player) => number
-  calculateLowerTotal: (player: Player) => number
-  calculateGrandTotal: (player: Player) => number
+  rowConfigByEntryName: Record<string, ScoreSectionRowConfig>
   tableRef?: React.RefObject<HTMLDivElement> | React.RefObject<HTMLDivElement | null>
   hideTotals?: boolean
 }

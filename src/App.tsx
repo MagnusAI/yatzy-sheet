@@ -2,11 +2,13 @@ import { useState } from 'react'
 import styles from './App.module.css'
 import sheetData from './assets/sheet-reference.json'
 import type { GameData } from './types'
-import { GameControls, ScoreSection, PlayerNameHeader } from './components'
+import { GameControls, PlayerNameHeader } from './components'
 import { usePlayerManagement } from './hooks/usePlayerManagement'
-import { useScoreCalculations } from './hooks/useScoreCalculations'
 import { useSynchronizedScroll } from './hooks/useSynchronizedScroll'
 import { useDynamicGrid } from './hooks/useDynamicGrid'
+import { YatzySections } from './pages/YatzyPage'
+import { MiniGolfSection, createMiniGolfData } from './pages/MiniGolfPage'
+import controls from './components/styles/Controls.module.css'
 
 // Type assertion for sheet data
 const gameData = sheetData as GameData
@@ -30,14 +32,10 @@ function App() {
     canRemovePlayer
   } = usePlayerManagement()
 
-  const {
-    calculateUpperTotal,
-    calculateBonus,
-    calculateLowerTotal,
-    calculateGrandTotal
-  } = useScoreCalculations()
-
   const { playerHeaderRef, upperTableRef, lowerTableRef } = useSynchronizedScroll()
+  const [sheetType, setSheetType] = useState<'yatzy' | 'minigolf'>('yatzy')
+  const miniGolfData = createMiniGolfData(9)
+  const pageTitle = sheetType === 'yatzy' ? gameData.title : miniGolfData.title
   
   // Update CSS grid columns based on player count
   useDynamicGrid(players.length)
@@ -49,7 +47,21 @@ function App() {
   return (
     <div className={styles.yatzySheet}>
       <header className={styles.sheetHeader}>
-        <h1>{gameData.title}</h1>
+        <h1>{pageTitle}</h1>
+        <div className={controls.headerControls}>
+          <button
+            className={`${controls.toggleTotalsButton} ${sheetType !== 'yatzy' ? controls.toggleTotalsButtonHidden : ''}`}
+            onClick={() => setSheetType('yatzy')}
+          >
+            Yatzy
+          </button>
+          <button
+            className={`${controls.toggleTotalsButton} ${sheetType !== 'minigolf' ? controls.toggleTotalsButtonHidden : ''}`}
+            onClick={() => setSheetType('minigolf')}
+          >
+            Mini Golf
+          </button>
+        </div>
         <GameControls
           onAddPlayer={addPlayer}
           onRemovePlayer={removeLatestPlayer}
@@ -68,31 +80,23 @@ function App() {
       </div>
 
       <div className={styles.sheetSections}>
-        <ScoreSection
-          title="Upper Section"
-          entries={gameData.upper_section}
-          players={players}
-          onScoreChange={updateScore}
-          calculateUpperTotal={calculateUpperTotal}
-          calculateBonus={calculateBonus}
-          calculateLowerTotal={calculateLowerTotal}
-          calculateGrandTotal={calculateGrandTotal}
-          tableRef={upperTableRef as React.RefObject<HTMLDivElement>}
-          hideTotals={hideTotals}
-        />
-
-        <ScoreSection
-          title="Lower Section"
-          entries={gameData.lower_section}
-          players={players}
-          onScoreChange={updateScore}
-          calculateUpperTotal={calculateUpperTotal}
-          calculateBonus={calculateBonus}
-          calculateLowerTotal={calculateLowerTotal}
-          calculateGrandTotal={calculateGrandTotal}
-          tableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
-          hideTotals={hideTotals}
-        />
+        {sheetType === 'yatzy' ? (
+          <YatzySections
+            players={players}
+            onScoreChange={(playerId, category, value) => updateScore(playerId, category, value)}
+            upperTableRef={upperTableRef as React.RefObject<HTMLDivElement>}
+            lowerTableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
+            hideTotals={hideTotals}
+          />
+        ) : (
+          <MiniGolfSection
+            data={miniGolfData}
+            players={players}
+            onScoreChange={(playerId, category, value) => updateScore(playerId, category, value)}
+            tableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
+            hideTotals={hideTotals}
+          />
+        )}
       </div>
     </div>
   )
