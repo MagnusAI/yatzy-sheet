@@ -5,7 +5,9 @@ import sheetData from '../assets/sheet-reference.json'
 /**
  * Custom hook for score calculations
  */
-export function useScoreCalculations() {
+export function useScoreCalculations(config?: { bonusThreshold?: number; bonusPoints?: number }) {
+  const bonusThreshold = config?.bonusThreshold ?? GAME_CONFIG.BONUS_THRESHOLD
+  const bonusPoints = config?.bonusPoints ?? GAME_CONFIG.BONUS_POINTS
   const calculateUpperTotal = (player: Player): number => {
     return UPPER_CATEGORIES.reduce((total, category) => {
       const score = player.scores[category]
@@ -15,7 +17,7 @@ export function useScoreCalculations() {
 
   const calculateBonus = (player: Player): number => {
     const upperTotal = calculateUpperTotal(player)
-    return upperTotal >= GAME_CONFIG.BONUS_THRESHOLD ? GAME_CONFIG.BONUS_POINTS : 0
+    return upperTotal >= bonusThreshold ? bonusPoints : 0
   }
 
   const calculateLowerTotal = (player: Player): number => {

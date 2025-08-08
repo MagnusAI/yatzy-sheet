@@ -34,7 +34,7 @@ function App() {
 
   const { playerHeaderRef, upperTableRef, lowerTableRef } = useSynchronizedScroll()
   const [sheetType, setSheetType] = useState<'yatzy' | 'minigolf'>('yatzy')
-  const miniGolfData = createMiniGolfData(9)
+  const miniGolfData = createMiniGolfData(12)
   const pageTitle = sheetType === 'yatzy' ? gameData.title : miniGolfData.title
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [miniGolfHoles, setMiniGolfHoles] = useState(9)
@@ -83,6 +83,9 @@ function App() {
             upperTableRef={upperTableRef as React.RefObject<HTMLDivElement>}
             lowerTableRef={lowerTableRef as React.RefObject<HTMLDivElement>}
             hideTotals={hideTotals}
+            bonusThreshold={yatzyBonusThreshold}
+            bonusPoints={yatzyBonusPoints}
+            numDice={yatzyDice}
           />
         ) : (
           <MiniGolfSection
@@ -117,7 +120,10 @@ function App() {
             </div>
             <div className={settingsStyles.actions}>
               <button className={controls.resetButton} onClick={() => {
-                setMiniGolfHoles(9); setYatzyDice(6); setYatzyBonusThreshold(84); setYatzyBonusPoints(50); setSettingsOpen(false)
+                setMiniGolfHoles(9);
+                setYatzyDice(6);
+                setYatzyBonusThreshold(84);
+                setYatzyBonusPoints(50);
               }}>Reset</button>
               <button className={controls.addPlayerButton} onClick={() => setSettingsOpen(false)}>Close</button>
             </div>

@@ -15,7 +15,6 @@ export function SettingsModal({ open, title, onClose, children }: SettingsModalP
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
-          <button className={styles.closeButton} onClick={onClose} aria-label="Close settings">×</button>
         </div>
         <div className={styles.content}>
           {children}

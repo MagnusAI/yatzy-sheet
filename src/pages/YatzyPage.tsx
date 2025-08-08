@@ -12,7 +12,8 @@ export function buildYatzyRowConfig(
   _players: Player[],
   calculateUpperTotal: (p: Player) => number,
   calculateBonus: (p: Player) => number,
-  calculateGrandTotal: (p: Player) => number) {
+  calculateGrandTotal: (p: Player) => number,
+  numDice: number) {
   const config: Record<string, { type: 'normal' | 'total' | 'bonus' | 'grand-total'; isCalculated: boolean; isGrandTotal?: boolean; calculateValue?: (p: Player) => number }> = {}
 
   // Upper section
@@ -27,7 +28,17 @@ export function buildYatzyRowConfig(
   }
 
   // Lower section
-  for (const entry of gameData.lower_section) {
+  const filteredLower = gameData.lower_section.filter(entry => {
+    if (numDice >= 6) return true
+    // Remove entries unachievable with fewer than 6 dice
+    const name = entry.name.toLowerCase()
+    if (name.includes('three pairs')) return false
+    if (name.includes('two three')) return false
+    if (name.includes('royal')) return false
+    return true
+  })
+
+  for (const entry of filteredLower) {
     if (entry.name === CALCULATED_ROWS.GRAND_TOTAL) {
       config[entry.name] = { type: 'grand-total', isCalculated: true, isGrandTotal: true, calculateValue: calculateGrandTotal }
     } else {
@@ -43,16 +54,22 @@ export function YatzySections({
   onScoreChange,
   upperTableRef,
   lowerTableRef,
-  hideTotals
+  hideTotals,
+  bonusThreshold,
+  bonusPoints,
+  numDice
 }: {
   players: Player[]
   onScoreChange: (playerId: string, category: string, value: string) => void
   upperTableRef?: React.RefObject<HTMLDivElement>
   lowerTableRef?: React.RefObject<HTMLDivElement>
   hideTotals?: boolean
+  bonusThreshold: number
+  bonusPoints: number
+  numDice: number
 }) {
-  const { calculateUpperTotal, calculateBonus, calculateGrandTotal } = useScoreCalculations()
-  const rowConfig = buildYatzyRowConfig(players, calculateUpperTotal, calculateBonus, calculateGrandTotal)
+  const { calculateUpperTotal, calculateBonus, calculateGrandTotal } = useScoreCalculations({ bonusThreshold, bonusPoints })
+  const rowConfig = buildYatzyRowConfig(players, calculateUpperTotal, calculateBonus, calculateGrandTotal, numDice)
 
   return (
     <div>
@@ -67,7 +84,14 @@ export function YatzySections({
       />
       <ScoreSection
         title="Lower Section"
-        entries={gameData.lower_section}
+        entries={gameData.lower_section.filter(entry => {
+          if (numDice >= 6) return true
+          const name = entry.name.toLowerCase()
+          if (name.includes('three pairs')) return false
+          if (name.includes('two three')) return false
+          if (name.includes('royal')) return false
+          return true
+        })}
         players={players}
         onScoreChange={onScoreChange}
         rowConfigByEntryName={rowConfig}

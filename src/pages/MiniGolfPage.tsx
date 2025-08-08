@@ -46,15 +46,12 @@ export function MiniGolfSection({
   hideTotals?: boolean
 }) {
   const rowConfig = buildMiniGolfRowConfig()
-  const [holes] = React.useState(data.upper_section.filter(e => e.name.startsWith('Hole ')).length)
-
-  const currentData = createMiniGolfData(holes)
 
   return (
     <div>
       <ScoreSection
-        title={currentData.title}
-        entries={currentData.upper_section}
+        title={data.title}
+        entries={data.upper_section}
         players={players}
         onScoreChange={onScoreChange}
         rowConfigByEntryName={rowConfig}
