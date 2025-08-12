@@ -20,7 +20,7 @@ const gameData = sheetData as GameData
  */
 function App() {
   // Local state for UI preferences - default to hiding totals for suspense
-  const [hideTotals] = useState(true)
+  const [hideTotals, setHideTotals] = useState(true)
 
   // Custom hooks handle specific concerns
   const {
@@ -63,6 +63,13 @@ function App() {
             onClick={() => setSheetType('minigolf')}
           >
             Mini Golf
+          </button>
+          <button
+            className={`${controls.toggleTotalsButton} ${hideTotals ? controls.toggleTotalsButtonHidden : ''}`}
+            onClick={() => setHideTotals(prev => !prev)}
+            title={hideTotals ? 'Show totals' : 'Hide totals'}
+          >
+            {hideTotals ? '👁️ Show' : '🙈 Hide'}
           </button>
         </div>
         <SettingsButton onClick={() => setSettingsOpen(true)} />
